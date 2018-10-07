@@ -71,8 +71,6 @@ public class DetailedFriendList {
 			super.setup(context);
 			//read data to memory on the mapper.
 			Configuration conf = context.getConfiguration();
-			//String myfilePath = conf.get("/zxw151030/input/2/userdata.txt");
-			//e.g /user/hue/input/
 			Path part=new Path(context.getConfiguration().get("ARGUMENT"));//Location of file in HDFS
 
 
@@ -86,7 +84,6 @@ public class DetailedFriendList {
 				line=br.readLine();
 				while (line != null){
 					String[] arr=line.split(",");
-					//put (word, wordid) in the HashMap variable
 					map.put(arr[0], new String[]{arr[1],arr[5]});
 					line=br.readLine();
 				}
@@ -150,11 +147,6 @@ public class DetailedFriendList {
 		job.setJarByClass(DetailedFriendList.class);
 		job.setMapperClass(Map.class);
 		job.setReducerClass(Reduce.class);
-
-
-		// uncomment the following line to add the Combiner job.setCombinerClass(Reduce.class);
-
-
 
 		job.setOutputKeyClass(Text.class);
 		// set output value type
